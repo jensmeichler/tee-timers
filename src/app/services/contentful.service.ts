@@ -1,13 +1,10 @@
 import {Injectable} from '@angular/core';
-import {createClient} from 'contentful';
-import {CONTENTFUL_CONFIG} from '../config/contentful-client.config';
+import {Observable} from 'rxjs';
+import {Page} from '../models/page.model';
+import {createContentfulClient, getContentfulPages} from '../helpers/contentful.helper';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({providedIn: 'root'})
 export class ContentfulService {
-  private client = createClient(CONTENTFUL_CONFIG);
-
-  constructor() {
-  }
+  private client = createContentfulClient();
+  public pages$: Observable<Page[]> = getContentfulPages(this.client);
 }

@@ -1,1 +1,13 @@
-<h1>Tee-Timers</h1>
+<nav>
+  <ul>
+    @for (page of pages$ | async; track page.route) {
+      <li>
+        <a [routerLink]="page.route">
+          {{ page.title }}
+        </a>
+      </li>
+    }
+  </ul>
+</nav>
+
+<router-outlet></router-outlet>
