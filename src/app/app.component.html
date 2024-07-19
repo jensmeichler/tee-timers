@@ -1,13 +1,5 @@
-<nav>
-  <ul>
-    @for (page of pages$ | async; track page.route) {
-      <li>
-        <a [routerLink]="page.route">
-          {{ page.title }}
-        </a>
-      </li>
-    }
-  </ul>
-</nav>
+<tt-nav-bar
+  [pages]="pages$ | async"
+></tt-nav-bar>
 
 <router-outlet></router-outlet>

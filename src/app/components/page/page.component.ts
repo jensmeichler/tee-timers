@@ -12,7 +12,7 @@ import {AsyncPipe, JsonPipe} from '@angular/common';
 })
 export class PageComponent {
   protected content$ = inject(ContentfulService).pages$.pipe(
-    map((pages) => pages.find((page) => page.route === window.location.pathname.substring(1))),
+    map((pages) => pages.find((page) => page.route === window.location.pathname)),
     map((page) => page?.content)
   );
 }

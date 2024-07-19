@@ -11,7 +11,7 @@ export const routes: Routes = [{
       pages.forEach((page) =>
         routes.push({
           title: page.title,
-          path: page.route,
+          path: page.route.substring(1),
           component: PageComponent,
         })
       );
