@@ -2,11 +2,12 @@ import {Component, inject} from '@angular/core';
 import {ContentfulService} from '../../services/contentful.service';
 import {map} from 'rxjs';
 import {AsyncPipe, JsonPipe} from '@angular/common';
+import {NgxContentfulRichTextModule} from 'ngx-contentful-rich-text';
 
 @Component({
   selector: 'tt-page',
   standalone: true,
-  imports: [AsyncPipe, JsonPipe],
+  imports: [AsyncPipe, JsonPipe, NgxContentfulRichTextModule],
   templateUrl: './page.component.html',
   styleUrl: './page.component.scss'
 })
