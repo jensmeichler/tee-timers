@@ -13,7 +13,7 @@ import {NgxContentfulRichTextModule} from 'ngx-contentful-rich-text';
 })
 export class PageComponent {
   protected content$ = inject(ContentfulService).pagesFlat$.pipe(
-    map((pages) => pages.find((page) => page.route === window.location.pathname)),
+    map((pages) => pages.find((page) => page.route === window.location.pathname.replace('/tee-timers', ''))),
     map((page) => page?.content)
   );
 }
