@@ -2,7 +2,10 @@ import {CONTENTFUL_CONFIG} from '../config/contentful-client.config';
 import {createClient} from 'contentful';
 import {from, map} from 'rxjs';
 
-export const createContentfulClient = () => createClient(CONTENTFUL_CONFIG);
+export const createContentfulClient = () => createClient({
+  space: atob(CONTENTFUL_CONFIG.space),
+  accessToken: atob(CONTENTFUL_CONFIG.accessToken)
+});
 
 export const getContentfulPages = (client: ReturnType<typeof createContentfulClient>) =>
   from(client.getEntries({content_type: 'page'}))
@@ -12,7 +15,7 @@ export const getContentfulPages = (client: ReturnType<typeof createContentfulCli
           title: item.fields['title'] as string,
           description: item.fields['description'] as string | undefined,
           route: item.fields['route'] as string,
-          content: item.fields['content'] as string | undefined
+          content: item.fields['content'] as any | undefined
         }))
       )
     );

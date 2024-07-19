@@ -3,4 +3,5 @@ export interface Page {
   description?: string;
   route: string;
   content?: any;
+  children?: Page[];
 }

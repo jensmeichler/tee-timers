@@ -11,5 +11,5 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
   styleUrl: './nav-bar.component.scss'
 })
 export class NavBarComponent {
-  @Input() pages: Page[] | null = null;
+  @Input() nodes: Page[] | null = null;
 }

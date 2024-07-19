@@ -12,7 +12,7 @@ import {NgxContentfulRichTextModule} from 'ngx-contentful-rich-text';
   styleUrl: './page.component.scss'
 })
 export class PageComponent {
-  protected content$ = inject(ContentfulService).pages$.pipe(
+  protected content$ = inject(ContentfulService).pagesFlat$.pipe(
     map((pages) => pages.find((page) => page.route === window.location.pathname)),
     map((page) => page?.content)
   );
