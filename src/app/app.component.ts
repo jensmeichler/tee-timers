@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {RouterLink, RouterOutlet} from '@angular/router';
 import {ContentfulService} from './services/contentful.service';
-import {AsyncPipe} from "@angular/common";
+import {AsyncPipe} from '@angular/common';
 
 @Component({
   selector: 'app-root',

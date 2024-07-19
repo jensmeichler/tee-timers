@@ -1,7 +1,7 @@
 import {Routes} from '@angular/router';
-import {PageComponent} from '../app/components/page/page.component';
+import {PageComponent} from './components/page/page.component';
 import {map} from 'rxjs';
-import {createContentfulClient, getContentfulPages} from "./helpers/contentful.helper";
+import {createContentfulClient, getContentfulPages} from './helpers/contentful.helper';
 
 export const routes: Routes = [{
   path: '',

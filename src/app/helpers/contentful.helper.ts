@@ -1,6 +1,6 @@
 import {CONTENTFUL_CONFIG} from '../config/contentful-client.config';
 import {createClient} from 'contentful';
-import {from, map} from "rxjs";
+import {from, map} from 'rxjs';
 
 export const createContentfulClient = () => createClient(CONTENTFUL_CONFIG);
 
