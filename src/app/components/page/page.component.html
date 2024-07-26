@@ -1,7 +1,4 @@
-<main>
-  @if (content$ | async; as document) {
-    <ngx-contentful-rich-text
-      [document]="document"
-    ></ngx-contentful-rich-text>
-  }
-</main>
+<main
+  class="container pt-3"
+  [innerHtml]="content$ | async"
+></main>
