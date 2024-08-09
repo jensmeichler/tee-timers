@@ -1,5 +1,5 @@
 <tt-nav-bar
-  [nodes]="nodes$ | async"
+  [nodes]="(nodes$ | async) ?? []"
 ></tt-nav-bar>
 
 <router-outlet></router-outlet>

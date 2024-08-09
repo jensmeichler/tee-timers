@@ -11,5 +11,9 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
   styleUrl: './nav-bar.component.scss'
 })
 export class NavBarComponent {
-  @Input() nodes: Page[] | null = null;
+  @Input() nodes: Page[] = [];
+
+  protected sortNodes(nodes: Page[]): Page[] {
+    return nodes.sort((a, b) => (a.menuIndex || 0) - (b.menuIndex || 0));
+  }
 }

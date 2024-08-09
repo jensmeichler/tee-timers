@@ -1,0 +1,41 @@
+@if (homePage$ | async; as homePage) {
+  @for (img of homePage.imageSources; track img) {
+    <img
+      class="w-100 object-fit-cover"
+      [height]="500"
+      [src]="img"
+      alt=""
+    />
+  }
+  <div class="container pt-3">
+    <div class="row">
+      <div
+        class="col-12 col-md-8 col-lg-6 d-flex flex-column justify-content-center"
+        style="margin-top: -400px; height: 275px"
+      >
+        <div
+          class="bg-opacity-50 bg-black rounded-4 p-5 text-white d-flex flex-column justify-content-center"
+          style="backdrop-filter: blur(6px)"
+        >
+          <h1>{{ homePage.heroTitle }}</h1>
+          <p class="m-0" [innerHtml]="documentToHtmlString(homePage.heroText)"></p>
+          <br>
+          <div class="d-flex gap-3">
+            <a
+              class="btn btn-primary"
+              [href]="homePage.heroCta1Link"
+            >
+              {{ homePage.heroCta1 }}
+            </a>
+            <a
+              class="btn btn-secondary"
+              [href]="homePage.heroCta2Link"
+            >
+              {{ homePage.heroCta2 }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}

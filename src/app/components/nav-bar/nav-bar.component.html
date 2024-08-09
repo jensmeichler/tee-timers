@@ -6,34 +6,32 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
-        @for (page of nodes; track page.route) {
-          @if (page.route !== '/') {
-            @if (!page.children?.length) {
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  [routerLink]="page.route"
-                  routerLinkActive="active"
-                  aria-current="page"
-                  [title]="page.description"
-                >
-                  {{ page.title }}
-                </a>
-              </li>
-            } @else {
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  {{ page.title }}
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" [routerLink]="page.route">{{ page.title }}</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  @for (child of page.children; track child.route) {
-                    <li><a class="dropdown-item" [routerLink]="child.route">{{ child.title }}</a></li>
-                  }
-                </ul>
-              </li>
-            }
+        @for (page of sortNodes(nodes); track page.route) {
+          @if (!page.children?.length) {
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                [routerLink]="page.route"
+                routerLinkActive="active"
+                aria-current="page"
+                [title]="page.description"
+              >
+                {{ page.title }}
+              </a>
+            </li>
+          } @else {
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ page.title }}
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" [routerLink]="page.route">{{ page.title }}</a></li>
+                <li><hr class="dropdown-divider"></li>
+                @for (child of sortNodes(page.children!); track child.route) {
+                  <li><a class="dropdown-item" [routerLink]="child.route">{{ child.title }}</a></li>
+                }
+              </ul>
+            </li>
           }
         }
       </ul>

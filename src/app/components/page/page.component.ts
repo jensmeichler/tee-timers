@@ -25,6 +25,6 @@ export class PageComponent {
 
   protected content$ = inject(ContentfulService).pagesFlat$.pipe(
     map((pages) => pages.find((page) => page.route === window.location.pathname.replace('/tee-timers', ''))),
-    map((page) => page ? documentToHtmlString(page.content, this.renderOptions) : ''),
+    map((page) => page ? documentToHtmlString(page.content, this.renderOptions) : null),
   );
 }

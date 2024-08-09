@@ -12,5 +12,5 @@ import {NavBarComponent} from './components/nav-bar/nav-bar.component';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  protected nodes$ = inject(ContentfulService).pagesTree$;
+  protected nodes$ = inject(ContentfulService).navTree$;
 }

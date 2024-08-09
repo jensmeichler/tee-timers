@@ -15,7 +15,33 @@ export const getContentfulPages = (client: ReturnType<typeof createContentfulCli
           title: item.fields['title'] as string,
           description: item.fields['description'] as string | undefined,
           route: item.fields['route'] as string,
-          content: item.fields['content'] as any | undefined
+          content: item.fields['content'] as any | undefined,
+          redirect: item.fields['redirect'] as string | undefined,
+          availableInMenu: item.fields['availableInMenu'] as boolean,
+          menuIndex: item.fields['menuIndex'] as number | undefined,
+          availableOnHome: item.fields['availableOnHome'] as boolean,
+          homeIndex: item.fields['homeIndex'] as number | undefined,
+          availableInFooter: item.fields['availableInFooter'] as boolean,
+          footerIndex: item.fields['footerIndex'] as number | undefined
         }))
+      )
+    );
+
+export const getContentfulHomePage = (client: ReturnType<typeof createContentfulClient>) =>
+  from(client.getEntries({content_type: 'homepage'}))
+    .pipe(
+      map((collection) => {
+          const item = collection.items[0].fields;
+          const images = ((item?.['images'] ?? []) as any[]).map((image) => image.fields.file.url);
+          return {
+            heroTitle: item?.['heroTitle'] as string | undefined,
+            heroText: item?.['heroText'] as string | undefined,
+            heroCta1: item?.['heroCta1'] as string | undefined,
+            heroCta1Link: item?.['heroCta1Link'] as string | undefined,
+            heroCta2: item?.['heroCta2'] as string | undefined,
+            heroCta2Link: item?.['heroCta2Link'] as string | undefined,
+            imageSources: images,
+          };
+        }
       )
     );
