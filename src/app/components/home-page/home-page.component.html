@@ -2,7 +2,8 @@
   @for (img of homePage.imageSources; track img) {
     <img
       class="w-100 object-fit-cover"
-      [height]="500"
+      style="margin-top: -4rem"
+      [height]="550"
       [src]="img"
       alt=""
     />
@@ -11,10 +12,10 @@
     <div class="row">
       <div
         class="col-12 col-md-8 col-lg-6 d-flex flex-column justify-content-center"
-        style="margin-top: -400px; height: 275px"
+        style="margin-top: calc(-550px + 2rem)"
       >
         <div
-          class="bg-opacity-50 bg-black rounded-4 p-5 text-white d-flex flex-column justify-content-center"
+          class="bg-opacity-50 bg-light rounded-4 p-5 d-flex flex-column justify-content-center"
           style="backdrop-filter: blur(6px)"
         >
           <h1>{{ homePage.heroTitle }}</h1>
