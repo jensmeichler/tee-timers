@@ -1,7 +1,8 @@
-import {Component, Input} from '@angular/core';
+import {Component, inject, Input} from '@angular/core';
 import {Page} from '../../models/page.model';
 import {AsyncPipe} from '@angular/common';
-import {RouterLink, RouterLinkActive} from '@angular/router';
+import {Router, RouterLink, RouterLinkActive} from '@angular/router';
+import {map} from "rxjs";
 
 @Component({
   selector: 'tt-nav-bar',
@@ -12,6 +13,8 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
 })
 export class NavBarComponent {
   @Input() nodes: Page[] = [];
+
+  protected readonly isHomePage$ = inject(Router).events.pipe(map(() => location.pathname === '/'));
 
   protected sortNodes(nodes: Page[]): Page[] {
     return nodes.sort((a, b) => (a.menuIndex || 0) - (b.menuIndex || 0));
