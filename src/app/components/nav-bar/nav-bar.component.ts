@@ -1,5 +1,6 @@
 import {Component, inject, Input} from '@angular/core';
 import {Page} from '../../models/page.model';
+import {getComparableUrlPathname} from "../../helpers/url-helper";
 import {AsyncPipe} from '@angular/common';
 import {NavigationEnd, Router, RouterLink, RouterLinkActive} from '@angular/router';
 import {filter, map, startWith} from "rxjs";
@@ -16,8 +17,8 @@ export class NavBarComponent {
 
   protected readonly isHomePage$ = inject(Router).events.pipe(
     filter(event => event instanceof NavigationEnd),
-    map(() => location.pathname === '/'),
-    startWith(location.pathname === '/'),
+    map(() => getComparableUrlPathname() === '/'),
+    startWith(getComparableUrlPathname() === '/'),
   );
 
   protected sortNodes(nodes: Page[]): Page[] {

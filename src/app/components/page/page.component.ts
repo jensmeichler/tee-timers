@@ -2,6 +2,7 @@ import {AsyncPipe, JsonPipe} from '@angular/common';
 import {Component, inject} from '@angular/core';
 import {BLOCKS} from '@contentful/rich-text-types';
 import {documentToHtmlString, Options} from '@contentful/rich-text-html-renderer';
+import {getComparableUrlPathname} from "../../helpers/url-helper";
 import {ContentfulService} from '../../services/contentful.service';
 import {map} from 'rxjs';
 
@@ -24,7 +25,7 @@ export class PageComponent {
   };
 
   protected content$ = inject(ContentfulService).pagesFlat$.pipe(
-    map((pages) => pages.find((page) => page.route === window.location.pathname.replace('/tee-timers', ''))),
+    map((pages) => pages.find((page) => page.route === getComparableUrlPathname())),
     map((page) => page ? documentToHtmlString(page.content, this.renderOptions) : null),
   );
 }
