@@ -1,13 +1,19 @@
 import {Injectable} from '@angular/core';
 import {map, Observable, shareReplay} from 'rxjs';
 import {Page} from '../models/page.model';
-import {createContentfulClient, getContentfulHomePage, getContentfulPages} from '../helpers/contentful.helper';
+import {
+  createContentfulClient,
+  getContentfulHomePage,
+  getContentfulPages,
+  getContentfulTeeTimersLogo
+} from '../helpers/contentful.helper';
 import {HomePage} from '../models/home-page.model';
 
 @Injectable({providedIn: 'root'})
 export class ContentfulService {
   private client = createContentfulClient();
-  public homePage$: Observable<HomePage> = getContentfulHomePage(this.client).pipe(shareReplay(1)) as any;
+  public logoSrc$: Observable<string> = getContentfulTeeTimersLogo(this.client).pipe(shareReplay(1));
+  public homePage$: Observable<HomePage> = getContentfulHomePage(this.client).pipe(shareReplay(1));
   public pagesFlat$: Observable<Page[]> = getContentfulPages(this.client).pipe(shareReplay(1));
   public navTree$: Observable<Page[]> = this.pagesFlat$.pipe(
     map((pages) => {

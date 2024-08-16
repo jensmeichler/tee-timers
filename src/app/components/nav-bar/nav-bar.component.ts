@@ -4,6 +4,7 @@ import {getComparableUrlPathname} from "../../helpers/url-helper";
 import {AsyncPipe} from '@angular/common';
 import {NavigationEnd, Router, RouterLink, RouterLinkActive} from '@angular/router';
 import {filter, map, startWith} from "rxjs";
+import {ContentfulService} from '../../services/contentful.service';
 
 @Component({
   selector: 'tt-nav-bar',
@@ -14,6 +15,8 @@ import {filter, map, startWith} from "rxjs";
 })
 export class NavBarComponent {
   @Input() nodes: Page[] = [];
+
+  protected readonly logoSrc$ = inject(ContentfulService).logoSrc$;
 
   protected readonly isHomePage$ = inject(Router).events.pipe(
     filter(event => event instanceof NavigationEnd),

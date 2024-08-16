@@ -3,7 +3,7 @@ export interface HomePage {
   heroText: any;
   heroCta1: string;
   heroCta1Link: string;
-  heroCta2: string;
-  heroCta2Link: string;
-  imageSources: [];
+  heroCta2?: string;
+  heroCta2Link?: string;
+  imageSources: unknown[];
 }

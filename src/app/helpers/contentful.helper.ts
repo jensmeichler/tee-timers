@@ -34,14 +34,23 @@ export const getContentfulHomePage = (client: ReturnType<typeof createContentful
           const item = collection.items[0].fields;
           const images = ((item?.['images'] ?? []) as any[]).map((image) => image.fields.file.url);
           return {
-            heroTitle: item?.['heroTitle'] as string | undefined,
-            heroText: item?.['heroText'] as string | undefined,
-            heroCta1: item?.['heroCta1'] as string | undefined,
-            heroCta1Link: item?.['heroCta1Link'] as string | undefined,
+            heroTitle: item?.['heroTitle'] as string,
+            heroText: item?.['heroText'] as string,
+            heroCta1: item?.['heroCta1'] as string,
+            heroCta1Link: item?.['heroCta1Link'] as string,
             heroCta2: item?.['heroCta2'] as string | undefined,
             heroCta2Link: item?.['heroCta2Link'] as string | undefined,
             imageSources: images,
           };
         }
       )
+    );
+
+export const getContentfulTeeTimersLogo = (client: ReturnType<typeof createContentfulClient>) =>
+  from(client.getEntries({content_type: 'logo'}))
+    .pipe(
+      map((collection) => {
+        const file = collection.items[0].fields?.['file'] as any;
+        return file.fields.file.url as string;
+      })
     );
